@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Friotrack · Inicio</title>
+<meta name="description" content="Friotrack del Grupo Friopacking: homologación de empresas contratistas e inducción de seguridad para su personal en Friopacking y Frioteam.">
+<link rel="icon" href="assets/isotipo-teal.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="assets/sitio.css">
+<style>
+  /* Portal: cabecera blanca con el logo, hero con vista del producto, módulos, proceso, criterios y verificación */
+  /* Hero */
+  .hero2 { position: relative; overflow: hidden; background: linear-gradient(180deg, #f5f7fc 0%, #fff 100%) }
+  .hero2::before { content: ""; position: absolute; left: -140px; top: 40px; width: 520px; height: 545px; background: url("assets/isotipo-teal.png") no-repeat center / contain; opacity: .06; pointer-events: none }
+  .hero2 .container { position: relative; display: grid; grid-template-columns: 1.05fr .95fr; gap: 56px; align-items: center; padding-block: 72px 88px }
+  @media (max-width: 960px) { .hero2 .container { grid-template-columns: 1fr; gap: 44px; padding-block: 48px 60px } }
+  .hero2 h1 { font-family: var(--display); font-weight: 700; color: var(--navy); font-size: clamp(40px, 6.2vw, 68px); line-height: .98; letter-spacing: -.01em; margin: 18px 0 20px }
+  .hero2 h1 em { font-style: normal; color: var(--teal-ink); position: relative; white-space: nowrap }
+  .hero2 h1 em::after { content: ""; position: absolute; left: 0; right: 0; bottom: .06em; height: .14em; background: var(--teal); opacity: .35; border-radius: 4px; z-index: -1 }
+  .lead { font-size: 18px; color: var(--ink-soft); max-width: 52ch }
+  .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 30px }
+  .hero-ctas .btn { min-height: 54px; padding: 14px 26px; font-size: 16px }
+  /* Vista del producto */
+  .showcase { position: relative; aspect-ratio: 1 / 1.02; max-width: 540px; width: 100%; justify-self: end }
+  @media (max-width: 960px) { .showcase { justify-self: center; max-width: 480px } }
+  .sc-bg { position: absolute; inset: 6% 0 0 10%; border-radius: 28px; background: linear-gradient(150deg, var(--navy) 0%, var(--navy-950) 100%); overflow: hidden; box-shadow: 0 30px 70px rgba(10, 30, 100, .28) }
+  .sc-bg::after { content: ""; position: absolute; right: -18%; bottom: -16%; width: 78%; aspect-ratio: 270 / 283; background: url("assets/isotipo-teal.png") no-repeat center / contain; opacity: .9 }
+  .sc-bg .sc-lbl { position: absolute; left: 28px; top: 24px; color: #9fb0e6; font-size: 11.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase }
+  .float { position: absolute; background: #fff; border-radius: 18px; box-shadow: 0 18px 44px rgba(5, 14, 54, .22); padding: 18px 20px; display: flex; flex-direction: column; gap: 10px }
+  .f1 { left: 0; top: 16%; width: 74% }
+  .f2 { right: 4%; bottom: 7%; width: 62% }
+  .f-h { display: flex; justify-content: space-between; align-items: center; gap: 10px }
+  .f-tag { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--fg-3) }
+  .f-pill { font-size: 11.5px; font-weight: 700; padding: 3px 10px; border-radius: 999px; background: var(--ok-bg); color: var(--ok) }
+  .f-name { font-weight: 700; color: var(--navy); font-size: 15.5px; line-height: 1.25 }
+  .f-score { display: flex; align-items: baseline; gap: 8px }
+  .f-score b { font-family: var(--display); font-size: 40px; line-height: 1; color: var(--navy) }
+  .f-score span { font-size: 12.5px; color: var(--fg-3) }
+  .f-bars { display: grid; grid-template-columns: 25fr 30fr 25fr 10fr 10fr; gap: 4px }
+  .f-bars i { height: 8px; border-radius: 4px; background: var(--teal) }
+  .f-bars i:nth-child(3) { background: linear-gradient(90deg, var(--teal) 90%, #e3e8f2 90%) }
+  .f-legend { display: flex; justify-content: space-between; font-size: 10.5px; color: var(--fg-3) }
+  .f2 .row { display: flex; gap: 14px; align-items: center }
+  .qr { flex: none; width: 66px; height: 66px; border-radius: 8px; padding: 6px; background: #fff; border: 1px solid var(--line); display: grid; grid-template-columns: repeat(9, 1fr); gap: 1px }
+  .qr i { background: var(--navy) } .qr i.o { background: transparent }
+  .f2 .who { display: flex; flex-direction: column; gap: 3px; min-width: 0 }
+  .f2 .who b { color: var(--navy); font-size: 14.5px }
+  .f2 .who span { font-size: 12.5px; color: var(--fg-2) }
+  .f2 .ok { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 700; color: var(--ok) }
+  .f2 .ok::before { content: ""; width: 16px; height: 16px; border-radius: 50%; background: var(--ok) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.2l2.3 2.3 4.7-5' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 100% no-repeat }
+
+  @media (max-width: 560px) {
+    .showcase { aspect-ratio: auto; display: flex; flex-direction: column; gap: 14px; padding: 56px 16px 18px; border-radius: 24px; overflow: hidden }
+    .sc-bg { inset: 0 }
+    .float { position: relative; inset: auto; width: 100% !important }
+        .hero-ctas .btn { width: 100% }
+  }
+  /* Secciones */
+  .sec2 { padding-block: 88px }
+  .sec2.alt { background: #f5f7fc }
+  .sec-head { display: flex; flex-direction: column; gap: 12px; max-width: 680px; margin-bottom: 40px }
+  .sec-head h2 { font-family: var(--display); font-size: clamp(32px, 4.4vw, 46px); color: var(--navy); line-height: 1.02 }
+  .sec-head p { color: var(--ink-soft); font-size: 17px }
+
+  /* Módulos */
+  .mods2 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px }
+  @media (max-width: 1080px) { .mods2 { grid-template-columns: 1fr 1fr } .mods2 .m.t { grid-column: 1 / -1 } }
+  @media (max-width: 760px) { .mods2 { grid-template-columns: 1fr } }
+  .mods2 .m { padding: 30px }
+  .mods2 .m h3 { font-size: 30px }
+  .m.w::before { background: #f0a43a }
+  .m.w .m-ic { background: #fff3df; color: #9a5a00 }
+  .m.w .m-go span { background: #f0a43a; color: var(--navy) }
+  /* ¿Cuál me corresponde? */
+  .cual2 { margin-top: 28px; border: 1px solid #e6eaf3; border-radius: 22px; background: #fff; overflow: hidden }
+  .cual2 h3 { font-family: var(--display); font-size: 24px; color: var(--navy); padding: 20px 26px; border-bottom: 1px solid #edf0f6; background: #f7f9fd }
+  .cual2 ul { list-style: none; margin: 0; padding: 0 }
+  .cual2 li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 20px; align-items: center; padding: 16px 26px; border-top: 1px solid #edf0f6 }
+  .cual2 li:first-child { border-top: 0 }
+  .cual2 li span { color: var(--fg); font-size: 15.5px } .cual2 li span b { color: var(--navy) }
+  .cual2 li a { font-weight: 700; color: var(--navy); text-decoration: none; white-space: nowrap; padding: 8px 14px; border-radius: 999px; background: var(--soft) }
+  .cual2 li a:hover { background: var(--teal-100) }
+  @media (max-width: 640px) { .cual2 li { grid-template-columns: 1fr; padding: 16px 20px } .cual2 li a { justify-self: start } }
+  .m { position: relative; display: flex; flex-direction: column; gap: 18px; padding: 34px; border-radius: 24px; background: #fff; border: 1px solid #e6eaf3; text-decoration: none; color: inherit; transition: transform .2s, box-shadow .2s, border-color .2s; overflow: hidden }
+  .m:hover { transform: translateY(-3px); box-shadow: 0 24px 50px rgba(10, 30, 100, .12); border-color: transparent }
+  .m::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 5px; background: var(--navy) }
+  .m.t::before { background: var(--teal) }
+  .m-top { display: flex; align-items: center; justify-content: space-between; gap: 12px }
+  .m-ic { width: 58px; height: 58px; border-radius: 16px; display: grid; place-items: center; background: var(--navy); color: #fff }
+  .m.t .m-ic { background: var(--teal); color: var(--navy) }
+  .m-aud { font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--fg-3); background: var(--soft); padding: 6px 12px; border-radius: 999px }
+  .m h3 { font-family: var(--display); font-size: 34px; color: var(--navy) }
+  .m p { color: var(--ink-soft); font-size: 16px }
+  .m ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px }
+  .m li { display: flex; gap: 12px; align-items: flex-start; font-size: 15px; color: var(--fg) }
+  .m li::before { content: ""; flex: none; width: 20px; height: 20px; margin-top: 1px; border-radius: 50%; background: var(--teal-100) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M6 10.3l2.6 2.6L14 7.4' fill='none' stroke='%231d7a68' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 100% no-repeat }
+  .m-go { margin-top: auto; padding-top: 6px; display: inline-flex; align-items: center; gap: 10px; font-weight: 700; color: var(--navy); font-size: 16px }
+  .m-go span { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; transition: transform .2s }
+  .m.t .m-go span { background: var(--teal); color: var(--navy) }
+  .m:hover .m-go span { transform: translateX(4px) }
+
+  /* Proceso */
+  .steps3 { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; counter-reset: s; position: relative }
+  .steps3::before { content: ""; position: absolute; left: 8%; right: 8%; top: 30px; height: 2px; background: repeating-linear-gradient(90deg, var(--line-2) 0 8px, transparent 8px 16px) }
+  @media (max-width: 860px) { .steps3 { grid-template-columns: 1fr } .steps3::before { display: none } }
+  .steps3 li { position: relative; display: flex; flex-direction: column; gap: 10px; padding: 0 6px }
+  .steps3 .n { width: 60px; height: 60px; border-radius: 50%; display: grid; place-items: center; background: #fff; border: 2px solid var(--navy); color: var(--navy); font-family: var(--display); font-size: 26px; font-weight: 700; position: relative; z-index: 1 }
+  .steps3 li:nth-child(2) .n { border-color: var(--teal-ink); color: var(--teal-ink) }
+  .steps3 li:nth-child(3) .n { background: var(--navy); color: #fff }
+  .steps3 h4 { margin: 8px 0 0; font-size: 19px; color: var(--navy) }
+  .steps3 p { color: var(--ink-soft); font-size: 15px }
+  .steps3 .who { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--teal-ink) }
+
+  /* Criterios */
+  .crit { display: grid; grid-template-columns: 1.15fr .85fr; gap: 40px; align-items: start }
+  @media (max-width: 960px) { .crit { grid-template-columns: 1fr } }
+  .weights { background: #fff; border: 1px solid #e6eaf3; border-radius: 22px; padding: 28px; display: flex; flex-direction: column; gap: 20px }
+  .wbar { display: grid; grid-template-columns: 25fr 30fr 25fr 10fr 10fr; height: 16px; border-radius: 10px; overflow: hidden; gap: 3px }
+  .wbar i:nth-child(1) { background: var(--navy) } .wbar i:nth-child(2) { background: var(--navy-700) } .wbar i:nth-child(3) { background: #3a5bb8 }
+  .wbar i:nth-child(4) { background: var(--teal-ink) } .wbar i:nth-child(5) { background: var(--teal) }
+  .wlist { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column }
+  .wlist li { display: grid; grid-template-columns: 14px 1fr auto; gap: 14px; align-items: center; padding: 13px 0; border-top: 1px solid #eef1f7; font-size: 15px }
+  .wlist li:first-child { border-top: 0 }
+  .wlist .dot { width: 12px; height: 12px; border-radius: 3px }
+  .wlist b { font-family: var(--display); font-size: 22px; color: var(--navy); font-variant-numeric: tabular-nums }
+  .wlist small { display: block; color: var(--fg-3); font-size: 12.5px }
+  .scale { display: flex; flex-direction: column; gap: 12px }
+  .sc { display: grid; grid-template-columns: 118px 1fr; gap: 16px; align-items: center; padding: 18px 20px; border-radius: 18px; background: #fff; border: 1px solid #e6eaf3 }
+  .sc b { font-family: var(--display); font-size: 26px; line-height: 1; font-variant-numeric: tabular-nums; white-space: nowrap }
+  .sc h5 { margin: 0 0 3px; font-size: 16px } .sc p { color: var(--ink-soft); font-size: 14px }
+  .sc.a b, .sc.a h5 { color: var(--ok) } .sc.o b, .sc.o h5 { color: var(--warn) } .sc.n b, .sc.n h5 { color: var(--bad) }
+  .sc.a { border-left: 5px solid var(--ok) } .sc.o { border-left: 5px solid var(--warn-mark) } .sc.n { border-left: 5px solid var(--bad) }
+  .note { font-size: 13.5px; color: var(--fg-3); font-style: italic; margin-top: 4px }
+
+  /* Verificación */
+  .verify2 { background: linear-gradient(120deg, var(--navy) 0%, var(--navy-950) 100%); color: #fff; border-radius: 28px; padding: 44px; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; position: relative; overflow: hidden }
+  .verify2::after { content: ""; position: absolute; right: -60px; top: -70px; width: 260px; aspect-ratio: 270 / 283; background: url("assets/isotipo-teal.png") no-repeat center / contain; opacity: .14 }
+  @media (max-width: 860px) { .verify2 { grid-template-columns: 1fr; padding: 30px 24px } }
+  .verify2 h2 { font-family: var(--display); font-size: clamp(28px, 3.6vw, 38px); line-height: 1.05 }
+  .verify2 p { color: #c5cfef; margin-top: 10px }
+  .vform { position: relative; z-index: 1; display: flex; gap: 10px; flex-wrap: wrap; background: rgba(255, 255, 255, .08); border: 1px solid rgba(255, 255, 255, .16); padding: 8px; border-radius: 999px }
+  .vform input { flex: 1 1 200px; min-width: 0; background: transparent; border: 0; color: #fff; padding: 12px 16px; font-size: 16px; letter-spacing: .04em; text-transform: uppercase; outline: none }
+  .vform input::placeholder { color: #8f9ccc; text-transform: none; letter-spacing: 0 }
+  .vform .btn { min-height: 48px }
+  @media (max-width: 480px) { .vform { border-radius: 18px } .vform .btn { width: 100% } }
+
+  .site-f { margin-top: 88px }
+  @media (prefers-reduced-motion: reduce) { .m, .m-go span { transition: none } }
+</style>
+</head>
+<body class="sitio">
+<header class="site-h">
+  <div class="container">
+    <a class="logo" href="./" aria-label="Grupo Friopacking · Inicio"><img src="assets/logo-friopacking-color.png" alt="Grupo Friopacking"></a>
+    <nav class="site-nav" aria-label="Principal">
+      <a href="#modulos">Trámites</a>
+      <a href="#proceso">Cómo funciona</a>
+      <a href="#criterios">Criterios de evaluación</a>
+      <a href="verificar/">Verificar certificado</a>
+      <a class="cta" href="homologacion/">Ingresar</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero2">
+    <div class="container">
+      <div>
+        <span class="kicker">Friotrack · Contratistas y visitantes</span>
+        <h1>Trabajemos <em>seguros</em> desde el primer día</h1>
+        <p class="lead">Homologa a tu empresa y prepara a tu personal para ingresar a las operaciones del Grupo Friopacking.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-navy" href="#modulos">Ver trámites <span class="arrow">→</span></a>
+          <a class="btn btn-primary" href="induccion/">Rendir la inducción</a>
+        </div>
+      </div>
+
+      <div class="showcase" aria-hidden="true">
+        <div class="sc-bg"><span class="sc-lbl">Seguridad · Salud · Medio ambiente</span></div>
+        <div class="float f1">
+          <div class="f-h"><span class="f-tag">Homologación</span><span class="f-pill">Aprobado</span></div>
+          <span class="f-name">Servicios Generales del Sur SAC</span>
+          <div class="f-score"><b>97.5%</b><span>Puntaje de evaluación</span></div>
+          <div class="f-bars"><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="f-legend"><span>Documentaria</span><span>Legal</span><span>Operativa</span><span>Incid.</span><span>Campo</span></div>
+        </div>
+        <div class="float f2">
+          <div class="f-h"><span class="f-tag">Certificado de inducción</span></div>
+          <div class="row">
+            <span class="qr"><i></i><i></i><i></i><i class="o"></i><i></i><i class="o"></i><i></i><i></i><i></i><i></i><i class="o"></i><i></i><i class="o"></i><i></i><i></i><i></i><i class="o"></i><i></i><i></i><i></i><i></i><i class="o"></i><i class="o"></i><i></i><i></i><i></i><i></i><i class="o"></i><i></i><i class="o"></i><i></i><i class="o"></i><i></i><i class="o"></i><i></i><i class="o"></i><i></i><i class="o"></i><i></i><i></i><i class="o"></i><i></i><i></i><i class="o"></i><i></i><i class="o"></i><i></i><i class="o"></i><i></i><i></i><i class="o"></i><i></i><i class="o"></i><i></i><i></i><i></i><i></i><i class="o"></i><i></i><i class="o"></i><i></i><i></i><i></i><i></i><i class="o"></i><i></i><i class="o"></i><i></i><i></i><i class="o"></i><i></i><i></i><i></i><i class="o"></i><i></i><i></i><i class="o"></i><i></i><i></i><i></i></span>
+            <div class="who"><b>Juan C. Pérez Quispe</b><span>Vigente hasta 14/10/2027</span><span class="ok">Verificado</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec2" id="modulos">
+    <div class="container">
+      <div class="sec-head"><span class="kicker">Trámites</span><h2>¿Qué necesitas hacer hoy?</h2><p>Dos trámites para empresas, según el tipo de servicio, y la inducción para cada persona que ingresa a nuestras sedes.</p></div>
+      <div class="mods2">
+        <a class="m" href="homologacion/">
+          <div class="m-top"><span class="m-ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6M9 10h.01M15 10h.01"/></svg></span><span class="m-aud">Empresa contratista</span></div>
+          <h3>Homologación SSOMA</h3>
+          <p>Para empresas que prestan servicios de forma <b>continua</b> al grupo. Se evalúa tu sistema SSOMA y la homologación vale hasta un año.</p>
+          <ul><li>Acceso con RUC y código enviado a tu correo</li><li>37 requisitos en 5 secciones, con puntaje</li><li>Avisos antes de que venza</li></ul>
+          <span class="m-go">Ir a homologación <span>→</span></span>
+        </a>
+        <a class="m w" href="autorizacion/">
+          <div class="m-top"><span class="m-ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4z"/></svg></span><span class="m-aud">Trabajo puntual</span></div>
+          <h3>Autorización de trabajos en sede</h3>
+          <p>Para empresas que vienen a hacer un trabajo <b>específico</b>. El área que te contrata lo registra; tu empresa sube los documentos y su personal. Vale solo en las fechas del trabajo.</p>
+          <ul><li>Requisitos según el nivel de riesgo</li><li>Documentos extra por actividad crítica</li><li>Lista del personal autorizado</li></ul>
+          <span class="m-go">Completar mi trabajo <span>→</span></span>
+        </a>
+        <a class="m t" href="induccion/">
+          <div class="m-top"><span class="m-ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l8 3v6c0 5-3.4 9.4-8 11-4.6-1.6-8-6-8-11V5z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span><span class="m-aud">Cada persona</span></div>
+          <h3>Inducción SSOMA</h3>
+          <p>Para contratistas, visitantes y transportistas. Mira el video, responde el examen y descarga tu constancia con código QR.</p>
+          <ul><li>Video y examen según tu tipo de ingreso</li><li>Apruebas con 14 de 20</li><li>Constancia válida por un año</li></ul>
+          <span class="m-go">Ir a la inducción <span>→</span></span>
+        </a>
+      </div>
+      <div class="cual2">
+        <h3>¿Cuál me corresponde?</h3>
+        <ul>
+          <li><span>Mi empresa presta un <b>servicio continuo</b> al grupo (mantenimiento mensual, limpieza permanente, seguridad…)</span><a href="homologacion/">Homologación →</a></li>
+          <li><span>Mi empresa viene a hacer <b>un trabajo puntual</b> en una sede y el área que me contrató ya lo registró</span><a href="autorizacion/">Trabajos en sede →</a></li>
+          <li><span>Soy <b>trabajador</b> de una contratista, <b>visitante</b> o <b>conductor</b> de un vehículo de carga</span><a href="induccion/">Inducción →</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec2 alt" id="proceso">
+    <div class="container">
+      <div class="sec-head"><span class="kicker">Cómo funciona</span><h2>Del registro al ingreso, en tres pasos</h2></div>
+      <ol class="steps3">
+        <li><span class="n">1</span><span class="who">Empresa</span><h4>Homologa o solicita el trabajo</h4><p>Sube tus documentos SSOMA y envíalos a revisión: homologación si el servicio es continuo, autorización si es un trabajo puntual.</p></li>
+        <li><span class="n">2</span><span class="who">Cada persona</span><h4>Rinde la inducción</h4><p>Trabajadores, visitantes y conductores ven el video, aprueban el examen y obtienen su constancia al instante.</p></li>
+        <li><span class="n">3</span><span class="who">Ingreso a planta</span><h4>Presenta tu QR</h4><p>Vigilancia escanea el código o busca el DNI y confirma en segundos si la persona está habilitada.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec2" id="criterios">
+    <div class="container">
+      <div class="sec-head"><span class="kicker">Criterios de evaluación</span><h2>Así evaluamos tu homologación</h2><p>Revisamos tu documentación con la lista de verificación del Sistema de Gestión SSOMA para contratistas. Cada sección pesa distinto en el puntaje final.</p></div>
+      <div class="crit">
+        <div class="weights">
+          <div class="wbar" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+          <ul class="wlist">
+            <li><span class="dot" style="background:var(--navy)"></span><span>Gestión documentaria<small>Política, RISST, comité, plan anual, IPERC, mapa de riesgos, programas</small></span><b>25%</b></li>
+            <li><span class="dot" style="background:var(--navy-700)"></span><span>Cumplimiento legal<small>SCTR, Vida Ley, EMO, EPP, contratos, T-Registro, capacitaciones</small></span><b>30%</b></li>
+            <li><span class="dot" style="background:#3a5bb8"></span><span>Gestión operativa<small>Identificación del personal, CV, PETS, permisos, plan de emergencia</small></span><b>25%</b></li>
+            <li><span class="dot" style="background:var(--teal-ink)"></span><span>Incidentes y accidentes<small>Registros, investigaciones, estadísticas, actos y condiciones</small></span><b>10%</b></li>
+            <li><span class="dot" style="background:var(--teal)"></span><span>Control operativo en campo<small>Equipos certificados, EPP, altura, caliente, eléctricos, MATPEL</small></span><b>10%</b></li>
+          </ul>
+        </div>
+        <div class="scale">
+          <div class="sc a"><b>95–100%</b><div><h5>Aprobado</h5><p>Puede trabajar sin restricciones.</p></div></div>
+          <div class="sc o"><b>90–94%</b><div><h5>Aprobado con observaciones</h5><p>Puede trabajar, pero debe levantar las observaciones en 3 días.</p></div></div>
+          <div class="sc n"><b>&lt; 90%</b><div><h5>No aprobado</h5><p>No puede iniciar ni continuar actividades hasta regularizar.</p></div></div>
+          <p class="note">La aprobación no exime de fiscalización en campo ni del cumplimiento legal vigente.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container" aria-labelledby="v-t">
+    <div class="verify2">
+      <div><h2 id="v-t">¿Necesitas validar un certificado?</h2><p>Escanea el QR del certificado o escribe su código para confirmar que la inducción está vigente.</p></div>
+      <form class="vform" id="vform" action="verificar/">
+        <input id="vcod" name="c" placeholder="Código, ej. FP-IND-2026-A1B2C3" aria-label="Código del certificado" autocomplete="off">
+        <button class="btn btn-primary" type="submit">Verificar</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="site-f">
+  <div class="container">
+    <div><img src="assets/logo-friopacking-blanco.png" alt="Grupo Friopacking"><div class="tag">Seguridad · Salud · Medio ambiente</div></div>
+    <div><h6>Trámites</h6><a href="homologacion/">Homologación de contratistas</a><a href="autorizacion/">Autorización de trabajos en sede</a><a href="induccion/">Inducción SSOMA</a><a href="verificar/">Verificar certificado</a></div>
+    <div><h6>Empresas del grupo</h6><a href="induccion/?empresa=friopacking">Friopacking</a><a href="induccion/?empresa=frioteam">Frioteam</a></div>
+    <div class="legal">© Grupo Friopacking · Área SSOMA</div>
+  </div>
+</footer>
+<script>
+  document.getElementById("vform").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var c = document.getElementById("vcod").value.trim().toUpperCase();
+    var a = document.createElement("a"); a.href = "verificar/" + (c ? "?c=" + encodeURIComponent(c) : ""); document.body.appendChild(a); a.click(); a.remove();
+  });
+</script>
+</body>
+</html>

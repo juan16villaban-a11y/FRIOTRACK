@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Friotrack · Homologación de contratistas</title>
+<meta name="description" content="Homologación SSOMA de empresas contratistas del Grupo Friopacking.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="../assets/isotipo-teal.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/styles.css">
+<link rel="stylesheet" href="../assets/sitio.css">
+<link rel="stylesheet" href="../assets/homologacion.css">
+</head>
+<body class="sitio">
+<header class="site-h">
+  <div class="container">
+    <a class="logo" href="../" aria-label="Grupo Friopacking · Inicio"><img src="../assets/logo-friopacking-color.png" alt="Grupo Friopacking"></a>
+    <nav class="site-nav" aria-label="Principal"><a href="../">Inicio</a><a href="../homologacion/" aria-current="page">Homologación</a><a href="../autorizacion/">Trabajos en sede</a><a href="../induccion/">Inducción</a><a href="../verificar/">Verificar certificado</a><div class="site-user" id="top-user" hidden><span id="top-razon"></span><button id="salir" type="button">Salir</button></div></nav>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="container narrow">
+    <span class="kicker">Empresas contratistas</span>
+    <h1>Homologación SSOMA</h1>
+    <p class="lead">Registra tu empresa, sube tus documentos de seguridad y salud en el trabajo y sigue en línea la revisión del área SSOMA.</p>
+    <div class="pills"><span class="pill p-ok"><i></i><b>95–100%</b> Aprobado</span><span class="pill p-obs"><i></i><b>90–94%</b> Aprobado con observaciones</span><span class="pill p-no"><i></i><b>&lt; 90%</b> No aprobado</span></div>
+  </div>
+</section>
+
+<main class="container mid zona">
+  <!-- Ingreso -->
+  <div class="card login-split" id="v-ingreso">
+    <form class="pane" id="f-ruc" novalidate>
+      <div class="pane-head"><span class="kicker">Acceso de empresas</span><h2>Ingresa con tu RUC</h2><p>Te enviaremos un código de acceso al correo registrado de tu empresa. Si es tu primera vez, te pediremos algunos datos para registrarla.</p></div>
+      <div class="field"><label for="ruc">RUC de la empresa</label><input class="inp inp-lg" id="ruc" inputmode="numeric" maxlength="11" autocomplete="off" placeholder="20123456789"></div>
+      <div class="err" id="ruc-err" role="alert" hidden></div>
+      <button class="btn btn-navy btn-block" id="ruc-go" type="submit">Continuar <span class="arrow">→</span></button>
+      <p class="hint center">Tus documentos solo los ven tu empresa y el área SSOMA.</p>
+    </form>
+    <aside class="login-aside">
+      <h3>Cómo funciona</h3>
+      <ol class="mini-steps">
+        <li><b>Registra tu empresa</b><span>RUC, representante y correo de contacto.</span></li>
+        <li><b>Sube tus documentos</b><span>37 requisitos en 5 secciones, más los que pida tu cliente.</span></li>
+        <li><b>Envía a revisión</b><span>La sede SSOMA que te coordina evalúa cada documento.</span></li>
+        <li><b>Recibe tu resultado</b><span>Por correo y en esta misma página.</span></li>
+      </ol>
+      <p class="aside-note">PDF, JPG, PNG, Word o Excel · hasta 10 MB por archivo</p>
+    </aside>
+  </div>
+
+  <!-- Registro -->
+  <div class="card w-reg" id="v-registro" hidden>
+    <form class="pane" id="f-reg" novalidate>
+      <div class="pane-head"><h2>Registra tu empresa</h2><p>Estos datos aparecerán en tu lista de verificación. El correo será el que reciba los códigos de acceso y los resultados.</p></div>
+      <div class="grid2">
+        <div class="field"><label>RUC</label><input class="inp" id="r-ruc" disabled></div>
+        <div class="field"><label for="r-razon">Razón social</label><input class="inp" id="r-razon" autocomplete="organization"></div>
+        <div class="field"><label for="r-actividad">Actividad o servicio que brinda</label><input class="inp" id="r-actividad" placeholder="Ej. Mantenimiento de cámaras de frío"></div>
+        <div class="field"><label for="r-trab">Trabajadores en planilla</label><input class="inp" id="r-trab" inputmode="numeric" maxlength="5"><span class="hint">Define si aplica RISST y Comité (más de 20) o Manual y Supervisor SST (menos de 20).</span></div>
+        <div class="field"><label for="r-rep">Representante de la empresa</label><input class="inp" id="r-rep" autocomplete="name"></div>
+        <div class="field"><label for="r-cargo">Cargo del representante</label><input class="inp" id="r-cargo"></div>
+        <div class="field"><label for="r-correo">Correo de contacto</label><input class="inp" id="r-correo" type="email" autocomplete="email"></div>
+        <div class="field"><label for="r-tel">Teléfono</label><input class="inp" id="r-tel" inputmode="tel" autocomplete="tel"></div>
+      </div>
+      <fieldset class="checks"><legend>¿A qué empresas del grupo brindarás servicio?</legend><div id="r-grupo" class="checkrow"></div></fieldset>
+      <fieldset class="checks"><legend>¿En qué sedes trabajarás?</legend><div id="r-sedes" class="checkrow"></div></fieldset>
+      <div class="field" id="r-resp-f" hidden><label for="r-resp">Sede que coordinará tu homologación</label><select class="inp" id="r-resp"></select><span class="hint">Esta sede revisará tus documentos. Las demás sedes donde trabajes podrán consultarlos.</span></div>
+      <div class="err" id="reg-err" role="alert" hidden></div>
+      <div class="actions between"><button class="btn btn-ghost" id="reg-back" type="button">← Atrás</button><button class="btn btn-navy" id="reg-go" type="submit">Registrar y enviar código</button></div>
+    </form>
+  </div>
+
+  <!-- Código -->
+  <div class="card w-cod" id="v-codigo" hidden>
+    <form class="pane" id="f-cod" novalidate>
+      <div class="pane-head"><h2>Revisa tu correo</h2><p id="cod-msg">Enviamos un código de 6 dígitos a tu correo.</p></div>
+      <div class="field"><label for="cod">Código de acceso</label><input class="inp code-inp" id="cod" inputmode="numeric" maxlength="6" autocomplete="one-time-code"></div>
+      <div class="err" id="cod-err" role="alert" hidden></div>
+      <div class="actions between"><button class="btn btn-ghost" id="cod-back" type="button">← Cambiar RUC</button>
+        <div class="actions"><button class="linkbtn" id="cod-re" type="button">Reenviar código</button><button class="btn btn-navy" id="cod-go" type="submit">Ingresar</button></div></div>
+    </form>
+  </div>
+
+  <!-- Expediente -->
+  <div id="v-exp" hidden>
+    <div class="card"><div class="pane" id="resumen"></div></div>
+    <div class="card" id="venc-card" hidden><div class="pane" id="vencimientos"></div></div>
+    <div id="secciones" class="secs"></div>
+    <div class="card" id="pers-card" hidden><div class="pane" id="personal"></div></div>
+    <div class="card send-bar" id="send-bar" hidden><div class="pane">
+      <div class="send-row"><div><b id="send-t"></b><p class="hint" id="send-h"></p></div><button class="btn btn-primary" id="enviar" type="button">Enviar a revisión</button></div>
+      <div class="err" id="send-err" role="alert" hidden></div>
+    </div></div>
+  </div>
+</main>
+<footer class="site-f">
+  <div class="container">
+    <div><img src="../assets/logo-friopacking-blanco.png" alt="Grupo Friopacking"><div class="tag">Seguridad · Salud · Medio ambiente</div></div>
+    <div><h6>Trámites</h6><a href="../homologacion/">Homologación de contratistas</a><a href="../autorizacion/">Autorización de trabajos en sede</a><a href="../induccion/">Inducción SSOMA</a><a href="../verificar/">Verificar certificado</a></div>
+    <div><h6>Empresas del grupo</h6><a href="../induccion/?empresa=friopacking">Friopacking</a><a href="../induccion/?empresa=frioteam">Frioteam</a></div>
+    <div class="legal">© Grupo Friopacking · Área SSOMA</div>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script src="../assets/config.js"></script>
+<script src="../assets/api.js"></script>
+<script src="../assets/homologacion.js"></script>
+</body>
+</html>

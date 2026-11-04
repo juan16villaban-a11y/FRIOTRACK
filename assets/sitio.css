@@ -1,0 +1,56 @@
+/* Estructura común del sitio público: cabecera blanca con logo, encabezado claro de página y pie azul.
+   Usa los colores del Grupo Friopacking: azul marino #102267 y turquesa #39C1AD. */
+:root { --navy-950: #102267; --teal-50: #EAF9FF; --ink-soft: #5b6478; --borde: #00CFE8; --fondo-claro: #EAF9FF }
+body.sitio { background: #fff }
+.container { width: 100%; max-width: 1180px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)) }
+.container.mid { max-width: 1080px }
+.container.narrow { max-width: 880px }
+
+/* Cabecera */
+.site-h { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: rgba(255, 255, 255, .94); backdrop-filter: saturate(1.4) blur(10px); border-bottom: 1px solid #edf0f6 }
+.site-h .container { display: flex; align-items: center; justify-content: space-between; gap: 20px; height: 76px }
+.site-h .logo { display: flex; align-items: center; flex: none }
+.site-h .logo img { height: 44px; width: auto; display: block }
+.site-nav { display: flex; align-items: center; gap: 4px; min-width: 0 }
+.site-nav a { color: var(--navy); text-decoration: none; font-weight: 600; font-size: 14.5px; padding: 9px 14px; border-radius: 999px; white-space: nowrap }
+.site-nav a:hover { background: var(--soft) }
+.site-nav a[aria-current="page"] { background: var(--teal-50); color: var(--teal-ink) }
+.site-nav a.cta { background: var(--navy); color: #fff; padding: 10px 18px; margin-left: 6px }
+.site-nav a.cta:hover { background: var(--navy-700) }
+.site-user { display: flex; align-items: center; gap: 12px; padding-left: 14px; margin-left: 6px; border-left: 1px solid var(--borde); min-width: 0 }
+.site-user span { font-weight: 600; color: var(--navy); font-size: 14px; max-width: 220px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+.site-user button { background: none; border: 1.5px solid var(--line-2); color: var(--fg); border-radius: 999px; padding: 6px 14px; font: inherit; font-size: 13.5px; font-weight: 600; cursor: pointer }
+.site-user button:hover { border-color: var(--navy-200) }
+@media (max-width: 920px) { .site-nav a:not(.cta) { display: none } .site-h .logo img { height: 38px } }
+@media (max-width: 520px) { .site-user span { display: none } }
+
+/* Encabezado de página (claro y centrado) */
+.kicker { display: inline-flex; align-items: center; gap: 10px; font-size: 12.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--teal-ink) }
+.kicker::before { content: ""; width: 28px; height: 3px; border-radius: 3px; background: var(--teal) }
+.page-hero { position: relative; overflow: hidden; background: linear-gradient(180deg, var(--fondo-claro) 0%, #fff 100%); border-bottom: 1px solid #EAF9FF }
+.page-hero::before { content: ""; position: absolute; left: -120px; top: -40px; width: 420px; aspect-ratio: 270 / 283; background: url("isotipo-teal.png") no-repeat center / contain; opacity: .07; pointer-events: none }
+.page-hero::after { content: ""; position: absolute; right: -110px; bottom: -150px; width: 360px; aspect-ratio: 270 / 283; background: url("isotipo-teal.png") no-repeat center / contain; opacity: .05; pointer-events: none; transform: scaleX(-1) }
+.page-hero .container { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px; padding-block: 56px 104px }
+.page-hero h1 { font-family: var(--display); font-weight: 700; color: var(--navy); font-size: clamp(36px, 5.4vw, 56px); line-height: 1; letter-spacing: -.005em; margin: 4px 0 0 }
+.page-hero .lead { font-size: 17.5px; color: var(--ink-soft); max-width: 60ch }
+.pills { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 8px }
+.pill { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; background: #fff; border: 1px solid var(--borde); font-size: 13.5px; color: var(--fg-2); box-shadow: 0 1px 2px rgba(10, 30, 100, .04) }
+.pill b { color: var(--navy); font-weight: 700 }
+.pill i { width: 9px; height: 9px; border-radius: 50%; background: var(--teal) }
+.pill.p-ok i { background: var(--ok) } .pill.p-obs i { background: var(--warn-mark) } .pill.p-no i { background: var(--bad) }
+@media (max-width: 560px) { .page-hero .container { padding-block: 40px 84px } }
+
+/* Zona de trabajo que se superpone al encabezado */
+.zona { position: relative; z-index: 2; margin-top: -64px; padding-bottom: 72px }
+.zona .card { border-radius: 24px; border-color: var(--borde); box-shadow: 0 2px 6px rgba(10, 30, 100, .04), 0 24px 60px rgba(10, 30, 100, .10) }
+
+/* Pie */
+.site-f { background: var(--navy-950); color: #b7c2e6 }
+.site-f .container { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 32px; padding-block: 52px 28px }
+@media (max-width: 760px) { .site-f .container { grid-template-columns: 1fr } }
+.site-f img { height: 46px; width: auto }
+.site-f h6 { margin: 0 0 12px; color: #fff; font-size: 13px; letter-spacing: .1em; text-transform: uppercase }
+.site-f a { color: #b7c2e6; text-decoration: none; display: block; padding: 4px 0; font-size: 14.5px }
+.site-f a:hover { color: #fff }
+.site-f .tag { margin-top: 14px; font-size: 13px; letter-spacing: .18em; text-transform: uppercase; color: var(--teal) }
+.site-f .legal { grid-column: 1 / -1; border-top: 1px solid rgba(255, 255, 255, .1); padding-top: 20px; font-size: 13px; color: #8390bb }

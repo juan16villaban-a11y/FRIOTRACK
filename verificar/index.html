@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Friotrack · Verificar certificado</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="../assets/isotipo-teal.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/styles.css">
+<link rel="stylesheet" href="../assets/sitio.css">
+<style>
+  .verify { max-width: 640px; margin: 0 auto; padding: 28px; display: flex; flex-direction: column; gap: 18px }
+  .status { display: flex; align-items: center; gap: 14px }
+  .status .ico { flex: none; width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; font-size: 30px; font-weight: 700; color: #fff }
+  .status.ok .ico { background: var(--ok) } .status.exp .ico { background: var(--warn-mark) } .status.no .ico { background: var(--bad) }
+  .status h1 { font-size: 28px; color: var(--navy) }
+  .status p { color: var(--fg-2); font-size: 14px }
+  .rows { display: grid; grid-template-columns: auto 1fr; gap: 10px 18px; padding: 16px 18px; background: var(--soft); border-radius: var(--r); font-size: 14.5px }
+  .rows dt { color: var(--fg-3) } .rows dd { margin: 0; font-weight: 600; min-width: 0; overflow-wrap: anywhere }
+  .verify img.lg { height: 34px; width: auto; align-self: flex-start }
+  .search { display: flex; gap: 10px; flex-wrap: wrap } .search .inp { flex: 1 1 220px; width: auto; text-transform: uppercase }
+  .tabs2 { display: inline-flex; gap: 4px; padding: 4px; border: 1px solid var(--line); border-radius: 999px; align-self: flex-start; flex-wrap: wrap }
+  .tabs2 button { border: 0; background: none; padding: 8px 16px; border-radius: 999px; font: inherit; font-weight: 600; font-size: 14px; color: var(--fg-2); cursor: pointer }
+  .tabs2 button[aria-selected="true"] { background: var(--navy); color: #fff }
+  .ok-t { color: var(--ok) } .bad-t { color: var(--bad) }
+  .otra { display: flex; flex-direction: column; gap: 12px; border-top: 1px solid var(--line); padding-top: 14px }
+  .otra[open] { display: flex } .otra summary { cursor: pointer; font-weight: 600; color: var(--navy-700) }
+</style>
+</head>
+<body class="sitio">
+<header class="site-h">
+  <div class="container">
+    <a class="logo" href="../" aria-label="Grupo Friopacking · Inicio"><img src="../assets/logo-friopacking-color.png" alt="Grupo Friopacking"></a>
+    <nav class="site-nav" aria-label="Principal"><a href="../">Inicio</a><a href="../homologacion/">Homologación</a><a href="../autorizacion/">Trabajos en sede</a><a href="../induccion/">Inducción</a><a href="../verificar/" aria-current="page">Verificar certificado</a></nav>
+  </div>
+</header>
+<section class="page-hero">
+  <div class="container narrow">
+    <span class="kicker">Verificación</span>
+    <h1>Verificar ingreso</h1>
+    <p class="lead">Confirma en segundos si un contratista, visitante o transportista está habilitado para ingresar a la sede.</p>
+    
+  </div>
+</section>
+<main class="container narrow zona">
+  <div class="card verify" id="box" aria-live="polite">
+    <div class="loading"><span class="spin"></span>Verificando certificado…</div>
+  </div>
+</main>
+<footer class="site-f">
+  <div class="container">
+    <div><img src="../assets/logo-friopacking-blanco.png" alt="Grupo Friopacking"><div class="tag">Seguridad · Salud · Medio ambiente</div></div>
+    <div><h6>Trámites</h6><a href="../homologacion/">Homologación de contratistas</a><a href="../autorizacion/">Autorización de trabajos en sede</a><a href="../induccion/">Inducción SSOMA</a><a href="../verificar/">Verificar certificado</a></div>
+    <div><h6>Empresas del grupo</h6><a href="../induccion/?empresa=friopacking">Friopacking</a><a href="../induccion/?empresa=frioteam">Frioteam</a></div>
+    <div class="legal">© Grupo Friopacking · Área SSOMA</div>
+  </div>
+</footer>
+<script src="../assets/config.js"></script>
+<script src="../assets/api.js"></script>
+<script>
+(function () {
+  const $ = s => document.querySelector(s), esc = window.fpEsc, fmt = window.fpFecha;
+  const EMP = (window.FP_CONFIG || {}).EMPRESAS || [];
+  const box = $("#box");
+  let modo = "c";
+  function buscador(msg) {
+    return `${msg || ""}<div class="tabs2" role="tablist"><button type="button" data-m="c" aria-selected="${modo === "c"}">Por código del certificado</button><button type="button" data-m="dni" aria-selected="${modo === "dni"}">Por DNI / CE</button></div>
+      <form class="search" id="f"><input class="inp" id="c" placeholder="${modo === "c" ? "Ej. FP-IND-2026-A1B2C3" : "Ej. 45678912"}" aria-label="${modo === "c" ? "Código del certificado" : "DNI o carné de extranjería"}" autocomplete="off" ${modo === "dni" ? 'inputmode="numeric" maxlength="12"' : ""}><button class="btn btn-navy" type="submit">Verificar</button></form>`;
+  }
+  function enlazar() {
+    box.querySelectorAll("[data-m]").forEach(b => b.onclick = () => { modo = b.dataset.m; const f = $("#f"); f.outerHTML = ""; box.querySelector(".tabs2").outerHTML = buscador(); enlazar(); $("#c").focus(); });
+    const f = $("#f"); if (f) f.onsubmit = e => { e.preventDefault(); const v = $("#c").value.trim().toUpperCase().replace(/\s/g, modo === "dni" ? "" : " "); if (v) { history.replaceState(null, "", "?" + modo + "=" + encodeURIComponent(v)); verificar(v, modo); } };
+  }
+  async function verificar(valor, m) {
+    modo = m;
+    box.innerHTML = `<div class="loading"><span class="spin"></span>Verificando…</div>`;
+    let r;
+    try { r = await window.fpApi(m === "dni" ? "verificar_dni" : "verificar", m === "dni" ? { dni: valor } : { codigo: valor }); }
+    catch (e) { box.innerHTML = `<div class="notice bad"><strong>No se pudo verificar en este momento.</strong><span>Revisa tu conexión e inténtalo de nuevo.</span></div>` + buscador(); enlazar(); return; }
+    if (!r || !r.encontrado) {
+      box.innerHTML = `<div class="status no"><span class="ico">✕</span><div><h1>${m === "dni" ? "Sin registros" : "Certificado no encontrado"}</h1><p>${m === "dni" ? `No hay inducciones registradas con el documento <b>${esc(valor)}</b>.` : `El código <b>${esc(valor)}</b> no corresponde a ningún certificado emitido.`}</p></div></div>
+        <p class="hint">Revisa que esté bien escrito o comunícate con el área SSOMA.</p>` + buscador();
+      enlazar(); return;
+    }
+    const e = EMP.find(x => x.nombre === r.grupo) || {};
+    const ok = r.habilitado;
+    box.innerHTML = `${e.logoWeb ? `<img class="lg" src="${esc(e.logoWeb)}" alt="${esc(r.grupo)}">` : ""}
+      <div class="status ${ok ? "ok" : r.vigente ? "exp" : "no"}"><span class="ico">${ok ? "✓" : "!"}</span><div>
+        <h1>${ok ? "Habilitado para ingresar" : "No habilitado"}</h1>
+        <p>${ok ? `Puede ingresar hasta el <b>${fmt(r.hasta)}</b>.` : esc((r.motivos || []).join(" · "))}</p></div></div>
+      <dl class="rows">
+        <dt>Trabajador</dt><dd>${esc(r.nombre)}</dd>
+        <dt>Documento</dt><dd>${esc(r.dni)}</dd>
+        <dt>Empresa</dt><dd>${esc(r.empresa)}</dd>
+        <dt>Tipo de ingreso</dt><dd>${esc(r.tipo || "Contratista")}${r.placa ? " · Placa " + esc(r.placa) : ""}</dd>
+        ${r.tipo === "Contratista" || !r.tipo ? `<dt>Cargo</dt><dd>${esc(r.cargo)}</dd>` : ""}
+        <dt>Ingresa a</dt><dd>${esc(r.grupo)}${r.sede ? " · Sede " + esc(r.sede) : ""}</dd>
+        <dt>Inducción</dt><dd>${r.vigente ? `<span class="ok-t">Vigente</span> hasta ${fmt(r.vence)}` : r.vence ? `<span class="bad-t">Vencida</span> el ${fmt(r.vence)}` : `<span class="bad-t">No aprobada</span>`}</dd>
+        ${r.tipo === "Contratista" || !r.tipo ? `<dt>Homologación de la empresa</dt><dd>${r.empresaVence ? (r.empresaVence >= r.hoy ? `Vigente hasta ${fmt(r.empresaVence)}` : `<span class="bad-t">Vencida</span> el ${fmt(r.empresaVence)}`) : "—"}</dd>` : ""}
+        ${r.autorizacion ? `<dt>Autorización de trabajo</dt><dd><span class="ok-t">${esc(r.autorizacion.id)}</span> · Sede ${esc(r.autorizacion.sede)} · hasta ${fmt(r.autorizacion.fin)}</dd>` : ""}
+        ${r.codigo ? `<dt>Certificado</dt><dd>${esc(r.codigo)} · emitido ${fmt(r.fecha)}</dd>` : ""}
+      </dl>
+      <p class="hint">Consulta realizada el ${fmt(r.hoy)}. Compara el nombre y el documento con la identificación de la persona. Contratistas: inducción vigente y empresa homologada o trabajo autorizado. Visitantes y transportistas: inducción vigente.</p>
+      <details class="otra"><summary>Verificar a otra persona</summary>${buscador()}</details>`;
+    enlazar();
+  }
+  const q = new URLSearchParams(location.search), c = (q.get("c") || "").trim().toUpperCase(), d = (q.get("dni") || "").trim().toUpperCase();
+  if (c) verificar(c, "c"); else if (d) verificar(d, "dni");
+  else { box.innerHTML = `<div class="pane-head"><h2>Verifica a un trabajador</h2><p>Escanea el QR del certificado, escribe su código (por ejemplo FP-IND-2026-A1B2C3) o busca por DNI.</p></div>` + buscador(); enlazar(); }
+})();
+</script>
+</body>
+</html>

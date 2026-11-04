@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Friotrack · Autorización de trabajos en sede</title>
+<meta name="description" content="Autorización SSOMA para trabajos puntuales en las sedes del Grupo Friopacking.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="../assets/isotipo-teal.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/styles.css">
+<link rel="stylesheet" href="../assets/sitio.css">
+<link rel="stylesheet" href="../assets/homologacion.css">
+</head>
+<body class="sitio">
+<header class="site-h">
+  <div class="container">
+    <a class="logo" href="../" aria-label="Grupo Friopacking · Inicio"><img src="../assets/logo-friopacking-color.png" alt="Grupo Friopacking"></a>
+    <nav class="site-nav" aria-label="Principal"><a href="../">Inicio</a><a href="../homologacion/">Homologación</a><a href="../autorizacion/" aria-current="page">Trabajos en sede</a><a href="../induccion/">Inducción</a><a href="../verificar/">Verificar certificado</a><div class="site-user" id="top-user" hidden><span id="top-razon"></span><button id="salir" type="button">Salir</button></div></nav>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="container narrow">
+    <span class="kicker">Trabajos puntuales</span>
+    <h1>Autorización de trabajos en sede</h1>
+    <p class="lead">Para empresas que vienen a realizar un trabajo específico en una sede. El área del Grupo Friopacking que te contrata registra el trabajo; tú subes los documentos y registras a tu personal.</p>
+    <div class="pills"><span class="pill p-ok"><i></i><b>Riesgo bajo</b> 5 requisitos</span><span class="pill p-obs"><i></i><b>Riesgo medio</b> 10 requisitos</span><span class="pill p-no"><i></i><b>Riesgo alto</b> 13 + los de cada actividad</span></div>
+  </div>
+</section>
+
+<main class="container mid zona">
+  <!-- Ingreso -->
+  <div class="card login-split" id="v-ingreso">
+    <form class="pane" id="f-ruc" novalidate>
+      <div class="pane-head"><span class="kicker">Acceso de empresas</span><h2>Ingresa con tu RUC</h2><p>Te enviaremos un código de acceso al correo que el Grupo Friopacking registró para tu empresa.</p></div>
+      <div class="field"><label for="ruc">RUC de la empresa</label><input class="inp inp-lg" id="ruc" inputmode="numeric" maxlength="11" autocomplete="off" placeholder="20123456789"></div>
+      <div class="err" id="ruc-err" role="alert" hidden></div>
+      <button class="btn btn-navy btn-block" id="ruc-go" type="submit">Continuar <span class="arrow">→</span></button>
+      <div class="cual"><b>¿Tu empresa presta servicios de forma continua al grupo?</b> Ese caso es <a href="../homologacion/">Homologación de contratistas</a>, no este trámite.</div>
+    </form>
+    <aside class="login-aside">
+      <h3>Cómo funciona</h3>
+      <ol class="mini-steps">
+        <li><b>El grupo registra el trabajo</b><span>El responsable de la sede define fechas y actividades. Te llega un correo.</span></li>
+        <li><b>Sube los documentos</b><span>La plataforma te pide solo los que corresponden al nivel de riesgo.</span></li>
+        <li><b>Registra a tu personal</b><span>Cada trabajador debe rendir la inducción SSOMA como contratista.</span></li>
+        <li><b>SSOMA autoriza</b><span>Tu personal podrá ingresar solo en las fechas autorizadas.</span></li>
+      </ol>
+      <p class="aside-note">Envía tu solicitud con anticipación · PDF, JPG, PNG, Word o Excel hasta 10 MB</p>
+    </aside>
+  </div>
+
+  <!-- Código -->
+  <div class="card w-cod" id="v-codigo" hidden>
+    <form class="pane" id="f-cod" novalidate>
+      <div class="pane-head"><h2>Revisa tu correo</h2><p id="cod-msg">Enviamos un código de 6 dígitos a tu correo.</p></div>
+      <div class="field"><label for="cod">Código de acceso</label><input class="inp code-inp" id="cod" inputmode="numeric" maxlength="6" autocomplete="one-time-code"></div>
+      <div class="err" id="cod-err" role="alert" hidden></div>
+      <div class="actions between"><button class="btn btn-ghost" id="cod-back" type="button">← Cambiar RUC</button>
+        <div class="actions"><button class="linkbtn" id="cod-re" type="button">Reenviar código</button><button class="btn btn-navy" id="cod-go" type="submit">Ingresar</button></div></div>
+    </form>
+  </div>
+
+  <!-- Mis solicitudes -->
+  <div id="v-lista" class="stack" hidden></div>
+  <!-- Detalle -->
+  <div id="v-sol" class="stack" hidden></div>
+</main>
+<footer class="site-f">
+  <div class="container">
+    <div><img src="../assets/logo-friopacking-blanco.png" alt="Grupo Friopacking"><div class="tag">Seguridad · Salud · Medio ambiente</div></div>
+    <div><h6>Trámites</h6><a href="../homologacion/">Homologación de contratistas</a><a href="../autorizacion/">Autorización de trabajos en sede</a><a href="../induccion/">Inducción SSOMA</a><a href="../verificar/">Verificar certificado</a></div>
+    <div><h6>Empresas del grupo</h6><a href="../induccion/?empresa=friopacking">Friopacking</a><a href="../induccion/?empresa=frioteam">Frioteam</a></div>
+    <div class="legal">© Grupo Friopacking · Área SSOMA</div>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script src="../assets/config.js"></script>
+<script src="../assets/api.js"></script>
+<script src="../assets/autorizacion.js"></script>
+</body>
+</html>

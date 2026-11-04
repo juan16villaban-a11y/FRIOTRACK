@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Friotrack · Inducción de contratistas</title>
+<meta name="description" content="Inducción de Seguridad y Salud en el Trabajo para personal contratista de Friopacking y Frioteam.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="../assets/isotipo-teal.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/styles.css">
+<link rel="stylesheet" href="../assets/sitio.css">
+</head>
+<body class="sitio">
+<header class="site-h">
+  <div class="container">
+    <a class="logo" href="../" aria-label="Grupo Friopacking · Inicio"><img src="../assets/logo-friopacking-color.png" alt="Grupo Friopacking"></a>
+    <nav class="site-nav" aria-label="Principal"><a href="../">Inicio</a><a href="../homologacion/">Homologación</a><a href="../autorizacion/">Trabajos en sede</a><a href="../induccion/" aria-current="page">Inducción</a><a href="../verificar/">Verificar certificado</a></nav>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="container narrow">
+    <span class="kicker">Contratistas · Visitantes · Transportistas</span>
+    <h1>Inducción SSOMA</h1>
+    <p class="lead">Antes de ingresar a nuestras sedes, mira el video de inducción y rinde un examen corto. Al aprobar, recibes tu constancia con código QR al instante.</p>
+    <div class="pills"><span class="pill"><i></i>Video <b>completo</b></span><span class="pill"><i></i><b id="c-preg">10</b> preguntas</span><span class="pill"><i></i>Apruebas con <b><span id="c-min">14</span>/20</b></span><span class="pill"><i></i>Válido <b id="c-vig">1 año</b></span></div>
+  </div>
+</section>
+
+<main class="container narrow zona">
+  <div class="card">
+    <nav class="progress" aria-label="Progreso"><ol id="steps">
+      <li data-s="1"><span class="bar"></span><span class="lbl"><span class="num">1</span><span class="txt">Tus datos</span></span></li>
+      <li data-s="2"><span class="bar"></span><span class="lbl"><span class="num">2</span><span class="txt">Video</span></span></li>
+      <li data-s="3"><span class="bar"></span><span class="lbl"><span class="num">3</span><span class="txt">Examen</span></span></li>
+      <li data-s="4"><span class="bar"></span><span class="lbl"><span class="num">4</span><span class="txt">Certificado</span></span></li>
+    </ol></nav>
+
+    <!-- Paso 1 -->
+    <form class="pane" id="p1" novalidate>
+      <fieldset class="companies" id="tipo-box">
+        <legend>¿Cómo ingresas a la sede?</legend>
+        <div class="tipo-grid" id="tipo-opts" role="radiogroup"></div>
+      </fieldset>
+      <fieldset class="companies" id="grupo-box">
+        <legend>¿A qué empresa del grupo vas a ingresar?</legend>
+        <div class="company-grid" id="grupo-opts"></div>
+        <span class="hint">Tu certificado se emitirá a nombre de la empresa que elijas.</span>
+      </fieldset>
+      <div class="pane-head"><h2>¿Quién rinde la inducción?</h2><p>Escribe tus datos tal como aparecen en tu documento. Así saldrán en tu certificado.</p></div>
+      <div class="grid2">
+        <div class="field"><label for="f-nombre">Nombres y apellidos</label><input class="inp" id="f-nombre" autocomplete="name" placeholder="Ej. Juan Carlos Pérez Quispe"></div>
+        <div class="field"><label for="f-dni">DNI o carné de extranjería</label><input class="inp" id="f-dni" inputmode="numeric" maxlength="12" placeholder="Ej. 45678912"></div>
+        <div class="field" id="w-ruc"><label for="f-ruc" id="l-ruc">RUC de tu empresa contratista</label><input class="inp" id="f-ruc" inputmode="numeric" maxlength="11" autocomplete="off" placeholder="Ej. 20123456789"><span class="hint" id="ruc-hint">Pídelo a tu supervisor. Con él te vinculamos a la homologación de tu empresa.</span></div>
+        <div class="field"><label for="f-empresa" id="l-empresa">Empresa contratista</label><input class="inp" id="f-empresa" autocomplete="organization" placeholder="Ej. Servicios Generales del Sur SAC"></div>
+        <div class="field" id="w-cargo"><label for="f-cargo">Cargo o puesto</label><input class="inp" id="f-cargo" placeholder="Ej. Técnico electricista"></div>
+        <div class="field" id="w-visita" hidden><label for="f-visita">¿A quién visitas?</label><input class="inp" id="f-visita" placeholder="Ej. Ana Ríos, jefa de calidad"></div>
+        <div class="field" id="w-placa" hidden><label for="f-placa">Placa del vehículo</label><input class="inp" id="f-placa" maxlength="10" placeholder="Ej. ABC-123" style="text-transform:uppercase"></div>
+        <div class="field" id="w-licencia" hidden><label for="f-licencia">Licencia de conducir</label><input class="inp" id="f-licencia" maxlength="20" placeholder="Ej. Q45678912" style="text-transform:uppercase"></div>
+        <div class="field"><label for="f-sede" id="l-sede">Sede donde trabajarás</label><select class="inp" id="f-sede"><option value="">Elige la sede</option></select></div>
+        <div class="field" id="w-area"><label for="f-area">Área donde trabajarás</label>
+          <select class="inp" id="f-area"><option>Planta de proceso / empaque</option><option>Cámaras de frío y túneles</option><option>Almacén y despacho</option><option>Mantenimiento</option><option>Sala de máquinas</option><option>Oficinas</option><option>Otra</option></select></div>
+        <div class="field"><label for="f-correo">Correo electrónico <span class="opt-tag">(opcional)</span></label><input class="inp" id="f-correo" type="email" autocomplete="email" placeholder="Para enviarte tu certificado"></div>
+      </div>
+      <div class="err" id="p1-err" role="alert" hidden></div>
+      <div class="notice ok" id="p1-prev" hidden></div>
+      <div class="actions end"><button class="btn btn-navy" id="p1-go" type="submit">Continuar al video <span class="arrow">→</span></button></div>
+    </form>
+
+    <!-- Paso 2 -->
+    <div class="pane" id="p2" hidden>
+      <div class="pane-head"><h2>Video de inducción</h2><p id="p2-sub">Míralo completo. No se puede adelantar.</p></div>
+      <div id="p2-body"></div>
+      <div class="actions between"><button class="btn btn-ghost" id="p2-back" type="button">← Atrás</button><button class="btn btn-navy" id="p2-go" type="button" disabled>Ir al examen <span class="arrow">→</span></button></div>
+    </div>
+
+    <!-- Paso 3 -->
+    <div class="pane" id="p3" hidden>
+      <div id="p3-body"><div class="loading"><span class="spin"></span>Preparando tu examen…</div></div>
+    </div>
+
+    <!-- Paso 4 -->
+    <div class="pane" id="p4" hidden></div>
+  </div>
+</main>
+<footer class="site-f">
+  <div class="container">
+    <div><img src="../assets/logo-friopacking-blanco.png" alt="Grupo Friopacking"><div class="tag">Seguridad · Salud · Medio ambiente</div></div>
+    <div><h6>Trámites</h6><a href="../homologacion/">Homologación de contratistas</a><a href="../autorizacion/">Autorización de trabajos en sede</a><a href="../induccion/">Inducción SSOMA</a><a href="../verificar/">Verificar certificado</a></div>
+    <div><h6>Empresas del grupo</h6><a href="../induccion/?empresa=friopacking">Friopacking</a><a href="../induccion/?empresa=frioteam">Frioteam</a></div>
+    <div class="legal">© Grupo Friopacking · Área SSOMA</div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<script src="../assets/config.js"></script>
+<script src="../assets/api.js"></script>
+<script src="../assets/induccion.js"></script>
+</body>
+</html>

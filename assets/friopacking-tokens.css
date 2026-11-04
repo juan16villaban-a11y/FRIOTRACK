@@ -1,0 +1,52 @@
+/* Identidad visual Grupo Friopacking — tokens base.
+   Cargar Inter antes de este archivo:
+   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+   Noway es comercial: se usa si está instalada en el equipo; si no, cae a Inter. */
+
+:root {
+  /* Paleta oficial */
+  --fp-marino:    #102267; /* Títulos y texto principal */
+  --fp-electrico: #007BDF; /* Iconos y acentos */
+  --fp-cian:      #00CFE8; /* Bordes y líneas (no usar como texto sobre claro) */
+  --fp-turquesa:  #39C1AD; /* Identidad de marca (no usar como texto sobre claro) */
+  --fp-celeste:   #EAF9FF; /* Fondos suaves */
+  --fp-blanco:    #FFFFFF; /* Fondo y texto sobre azul */
+  --fp-negro:     #000000; /* Texto secundario, siempre negro */
+
+  /* Tipografía */
+  --fp-font-titulo: 'Inter', 'Segoe UI', Arial, sans-serif;           /* 700 */
+  --fp-font-texto:  'Noway', 'Inter', 'Segoe UI', Arial, sans-serif;  /* 400 */
+}
+
+body {
+  background: var(--fp-blanco);
+  color: var(--fp-marino);
+  font-family: var(--fp-font-texto);
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--fp-font-titulo);
+  font-weight: 700;
+  color: var(--fp-marino);
+}
+
+small, figcaption, .fp-nota, .fp-fuente { color: var(--fp-negro); }
+
+a, .fp-acento { color: var(--fp-electrico); }
+
+hr, .fp-linea { border: 0; border-top: 2px solid var(--fp-cian); }
+
+.fp-suave { background: var(--fp-celeste); }
+
+.fp-marca { background: var(--fp-turquesa); color: var(--fp-marino); }
+
+/* Bloque invertido: portadas, cierres, banners */
+.fp-invertido { background: var(--fp-marino); color: var(--fp-blanco); }
+.fp-invertido h1, .fp-invertido h2, .fp-invertido h3 { color: var(--fp-blanco); }
+.fp-invertido .fp-destacado { color: var(--fp-cian); }
+
+/* Tablas */
+.fp-tabla { border-collapse: collapse; }
+.fp-tabla th { background: var(--fp-marino); color: var(--fp-blanco); font-family: var(--fp-font-titulo); }
+.fp-tabla td, .fp-tabla th { border: 1px solid var(--fp-cian); padding: .5em .75em; }
+.fp-tabla tr:nth-child(even) td { background: var(--fp-celeste); }

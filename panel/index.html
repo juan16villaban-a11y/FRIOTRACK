@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Friotrack · Panel</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="../assets/isotipo-teal.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/styles.css">
+<link rel="stylesheet" href="../assets/panel.css">
+<link rel="stylesheet" href="../assets/homologacion.css">
+</head>
+<body class="panel">
+<header class="top">
+  <div class="wrap wrap-wide">
+    <a class="brand" href="../"><img class="brand-logo" src="../assets/logo-friopacking-blanco.png" alt="Grupo Friopacking"><span class="brand-sub">Panel Friotrack</span></a>
+    <div class="right" id="topright" hidden>
+      <span class="quien" id="quien"></span>
+      <span class="live" id="live"><i></i><span id="live-t">En vivo</span></span>
+      <button class="linkbtn" id="salir" type="button">Salir</button>
+    </div>
+  </div>
+</header>
+
+<!-- Acceso -->
+<div class="wrap login-wrap" id="acceso">
+  <form class="card login" id="login">
+    <span class="eyebrow" style="color:var(--teal-ink)">Acceso interno · Grupo Friopacking</span>
+    <h1>Panel Friotrack</h1>
+    <p>Ingresa tu clave personal de la hoja <b>Usuarios</b>: SSOMA de cada sede, administrador o responsable de sede que registra trabajos.</p>
+    <div class="field"><label for="clave">Clave</label><input class="inp" id="clave" type="password" autocomplete="current-password"></div>
+    <div class="err" id="l-err" role="alert"></div>
+    <button class="btn btn-navy" id="l-go" type="submit">Entrar</button>
+  </form>
+</div>
+
+<!-- Panel -->
+<main class="wrap wrap-wide dash" id="dash" hidden>
+  <nav class="modtabs" role="tablist" aria-label="Módulos">
+    <button type="button" role="tab" data-mod="ind" aria-selected="true">Inducciones</button>
+    <button type="button" role="tab" data-mod="hom" aria-selected="false">Homologación <span class="badge" id="badge-hom" hidden></span></button>
+    <button type="button" role="tab" data-mod="tra" aria-selected="false">Trabajos en sede <span class="badge" id="badge-tra" hidden></span></button>
+    <button type="button" role="tab" data-mod="hab" aria-selected="false">Personal habilitado</button>
+    <button type="button" role="tab" data-mod="vet" aria-selected="false">Vetados <span class="badge mute" id="badge-vet" hidden></span></button>
+  </nav>
+  <div id="mod-ind" class="mod">
+  <div class="dash-head">
+    <div><span class="eyebrow" style="color:var(--teal-ink)">Contratistas, visitantes y transportistas</span><h1 id="titulo">Estado de las inducciones</h1></div>
+    <div class="actions"><button class="btn btn-ghost btn-sm" id="csv" type="button">Exportar a Excel</button><a class="btn btn-ghost btn-sm" id="hoja" target="_blank" rel="noopener">Abrir Google Sheets</a></div>
+  </div>
+
+  <div class="seg" id="seg" role="tablist" aria-label="Empresa del grupo"></div>
+  <div class="kpis" id="kpis"></div>
+
+  <div class="split">
+    <section class="box"><div class="box-head"><h2>Vencen pronto</h2><span class="count-s">próximos 30 días y vencidos recientes</span></div><ul class="list" id="pronto"></ul></section>
+    <section class="box"><div class="box-head"><h2>Por empresa contratista</h2><span class="count-s" id="emp-n"></span></div>
+      <div class="legend"><span><i style="background:var(--ok)"></i>Vigente</span><span><i style="background:var(--warn-mark)"></i>Por vencer</span><span><i style="background:var(--bad)"></i>Vencido</span><span><i style="background:var(--line-2)"></i>Desaprobado</span></div>
+      <div class="bars" id="empresas"></div></section>
+  </div>
+
+  <section style="display:flex;flex-direction:column;gap:12px">
+    <div class="toolbar">
+      <input class="inp" id="q" type="search" placeholder="Buscar por nombre, DNI o empresa" aria-label="Buscar">
+      <select class="inp" id="f-estado" aria-label="Estado"><option value="">Todos los estados</option><option value="vigente">Vigente</option><option value="porvencer">Por vencer</option><option value="vencido">Vencido</option><option value="desaprobado">Desaprobado</option></select>
+      <select class="inp" id="f-empresa" aria-label="Empresa"><option value="">Todas las empresas</option></select>
+      <select class="inp" id="f-tipo" aria-label="Tipo de ingreso"><option value="">Todos los tipos</option><option>Contratista</option><option>Visitante</option><option>Transportista</option></select>
+      <select class="inp" id="f-sede" aria-label="Sede" hidden><option value="">Todas las sedes</option></select>
+      <label class="check"><input type="checkbox" id="f-ultimo" checked> Solo el último intento por persona</label>
+    </div>
+    <div class="count-s" id="conteo"></div>
+    <div class="tablebox"><table>
+      <thead><tr><th>Fecha</th><th>Ingresa a / sede</th><th>Trabajador</th><th>Empresa / cargo</th><th>Nota</th><th>Estado</th><th>Vence</th><th>Certificado</th></tr></thead>
+      <tbody id="filas"></tbody>
+    </table></div>
+  </section>
+  </div>
+  <div id="mod-hom" class="mod" hidden></div>
+  <div id="mod-tra" class="mod" hidden></div>
+  <div id="mod-hab" class="mod" hidden></div>
+  <div id="mod-vet" class="mod" hidden></div>
+</main>
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script src="../assets/config.js"></script>
+<script src="../assets/api.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="../assets/panel.js"></script>
+<script src="../assets/panel-homologacion.js"></script>
+<script src="../assets/panel-trabajos.js"></script>
+<script src="../assets/panel-personal.js"></script>
+</body>
+</html>
